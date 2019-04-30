@@ -23,7 +23,7 @@ npm install @swup/gtm-plugin
 
 and included with import
 
-```javascript
+```shell
 import SwupGtmPlugin from '@swup/gtm-plugin';
 ```
 
