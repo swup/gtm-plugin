@@ -1,6 +1,6 @@
 {
   "name": "@swup/gtm-plugin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Swup GTM plugin.",
   "main": "lib/index.js",
   "scripts": {
