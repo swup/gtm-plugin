@@ -6,3 +6,4 @@ on:
 jobs:
   redeploy-docs:
     uses: swup/.github/.github/workflows/redeploy-docs.yml@master
+    secrets: inherit
