@@ -5,4 +5,4 @@ on:
 
 jobs:
   redeploy-docs:
-    uses: swup/.github/.github/workflows/redeploy-docs.yml@v1
+    uses: swup/.github/.github/workflows/redeploy-docs.yml@master
