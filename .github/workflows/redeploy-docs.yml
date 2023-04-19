@@ -1,0 +1,8 @@
+name: Redeploy Docs
+on:
+  push:
+    branches: [master]
+
+jobs:
+  redeploy-docs:
+    uses: swup/.github/workflows/redeploy-docs.yml@v1
