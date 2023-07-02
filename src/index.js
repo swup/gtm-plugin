@@ -11,7 +11,7 @@ export default class SwupGtmPlugin extends Plugin {
 		this.swup.hooks.off('replaceContent', this.trackPageview);
 	}
 
-	trackPageview() {
+	trackPageview = () => {
 		if (typeof window.dataLayer !== 'object') {
 			console.warn('GTM is not loaded on the page');
 			return;
