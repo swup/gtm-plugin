@@ -4,20 +4,28 @@ export default class SwupGtmPlugin extends Plugin {
 	name = 'SwupGtmPlugin';
 
 	mount() {
-		this.swup.on('contentReplaced', event => {
-			if (typeof window.dataLayer === 'object') {
-				const object = {
-					'event': 'VirtualPageview',
-					'virtualPageURL': window.location.pathname + window.location.search,
-					'virtualPageTitle': document.title
-				};
+		this.swup.hooks.on('replaceContent', this.trackPageview);
+	}
 
-				window.dataLayer.push(object);
+	unmount() {
+		this.swup.hooks.off('replaceContent', this.trackPageview);
+	}
 
-				this.swup.log(`GTM pageview (url '${object.virtualPageURL}').`);
-			} else {
-				console.warn('GTM is not loaded.')
-			}
-		})
+	trackPageview() {
+		if (typeof window.dataLayer !== 'object') {
+			console.warn('GTM is not loaded on the page');
+			return;
+		}
+
+		const url = window.location.pathname + window.location.search;
+		const title = document.title;
+
+		window.dataLayer.push({
+			event: 'VirtualPageview',
+			virtualPageURL: url,
+			virtualPageTitle: title
+		});
+
+		this.swup.log(`GTM page view: ${url}`);
 	}
 }
