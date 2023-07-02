@@ -1,11 +1,14 @@
-# Swup GTM plugin
+# Swup GTM Plugin
 
-Google Tag Manager Plugin triggers VirtualPageview event on swup:contentReplaced (on each page change) which can be associated with a page view within GTM.
-Event object also includes virtualPageURL holding the url of the page and virtualPageTitle holding the title of the page.
-Note that this event is not triggered at the first load, so the first page view must be triggered elsewhere.
-Simplified code run by this plugin on `contentReplaced` event:
+A [swup](https://swup.js.org) plugin for integrating Google Tag Manager.
 
-```javascript
+- Trigger a custom event after each page change to associate with a page view within GTM
+- This event is not triggered on intial load, so the first page view must be triggered elsewhere
+- The event is a `VirtualPageview` with `virtualPageURL` and `virtualPageTitle` properties
+
+Simplified code run by this plugin on the `replaceContent` hook:
+
+```js
 window.dataLayer.push({
   event: 'VirtualPageview',
   virtualPageURL: window.location.pathname + window.location.search,
@@ -15,22 +18,20 @@ window.dataLayer.push({
 
 ## Installation
 
-This plugin can be installed with npm
+Install the plugin from npm and import it into your bundle.
 
 ```bash
 npm install @swup/gtm-plugin
 ```
 
-and included with import
-
-```shell
+```js
 import SwupGtmPlugin from '@swup/gtm-plugin';
 ```
 
-or included from the dist folder
+Or include the minified production file from a CDN:
 
 ```html
-<script src="./dist/SwupGtmPlugin.js"></script>
+<script src="https://unpkg.com/@swup/gtm-plugin@2"></script>
 ```
 
 ## Usage
