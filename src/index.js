@@ -1,7 +1,7 @@
 import Plugin from '@swup/plugin';
 
-export default class GtmPlugin extends Plugin {
-    name = "GtmPlugin";
+export default class SwupGtmPlugin extends Plugin {
+    name = 'SwupGtmPlugin';
 
     mount() {
         this.swup.on('contentReplaced', event => {
