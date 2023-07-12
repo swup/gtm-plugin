@@ -6,7 +6,7 @@ A [swup](https://swup.js.org) plugin for integrating Google Tag Manager.
 - This event is not triggered on intial load, so the first page view must be triggered elsewhere
 - The event is a `VirtualPageview` with `virtualPageURL` and `virtualPageTitle` properties
 
-Simplified code run by this plugin on the `replaceContent` hook:
+Simplified code run by this plugin on the `page:view` hook:
 
 ```js
 window.dataLayer.push({

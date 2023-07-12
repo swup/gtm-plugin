@@ -4,11 +4,11 @@ export default class SwupGtmPlugin extends Plugin {
 	name = 'SwupGtmPlugin';
 
 	mount() {
-		this.swup.hooks.on('replaceContent', this.trackPageview);
+		this.swup.hooks.on('page:view', this.trackPageview);
 	}
 
 	unmount() {
-		this.swup.hooks.off('replaceContent', this.trackPageview);
+		this.swup.hooks.off('page:view', this.trackPageview);
 	}
 
 	trackPageview = () => {
