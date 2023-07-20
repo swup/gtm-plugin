@@ -4,14 +4,10 @@ export default class SwupGtmPlugin extends Plugin {
 	name = 'SwupGtmPlugin';
 
 	mount() {
-		this.swup.hooks.on('page:view', this.trackPageview);
+		this.on('page:view', this.trackPageview);
 	}
 
-	unmount() {
-		this.swup.hooks.off('page:view', this.trackPageview);
-	}
-
-	trackPageview = () => {
+	trackPageview() {
 		if (typeof window.dataLayer !== 'object') {
 			console.warn('GTM is not loaded on the page');
 			return;
