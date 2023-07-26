@@ -1,23 +1,27 @@
 import Plugin from '@swup/plugin';
 
-export default class GtmPlugin extends Plugin {
-    name = "GtmPlugin";
+export default class SwupGtmPlugin extends Plugin {
+	name = 'SwupGtmPlugin';
 
-    mount() {
-        this.swup.on('contentReplaced', event => {
-            if (typeof window.dataLayer === 'object') {
-                const object = {
-                    'event': 'VirtualPageview',
-                    'virtualPageURL': window.location.pathname + window.location.search,
-                    'virtualPageTitle': document.title
-                };
+	mount() {
+		this.on('page:view', this.trackPageview);
+	}
 
-                window.dataLayer.push(object);
+	trackPageview() {
+		if (typeof window.dataLayer !== 'object') {
+			console.warn('GTM is not loaded on the page');
+			return;
+		}
 
-                this.swup.log(`GTM pageview (url '${object.virtualPageURL}').`);
-            } else {
-                console.warn('GTM is not loaded.')
-            }
-        })
-    }
+		const url = window.location.pathname + window.location.search;
+		const title = document.title;
+
+		window.dataLayer.push({
+			event: 'VirtualPageview',
+			virtualPageURL: url,
+			virtualPageTitle: title
+		});
+
+		this.swup.log(`GTM page view: ${url}`);
+	}
 }
